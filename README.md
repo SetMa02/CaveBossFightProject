@@ -1,48 +1,73 @@
-# CaveBossFightProject
+# Overview
 
+**Arena** is a boss-fight-focused 2D platformer inspired by *Hollow Knight* and *Cuphead*. The game features several maps and locations with unique environments and level designs. While the characters and levels are heavily influenced by *Hollow Knight*, the gameplay mechanics take inspiration from *Cuphead*'s engaging combat and mechanics.
 
-Overview 
-Arena boss fight inspired by Hollow Knight and Cuphead, game contents several maps and location with unique environment and level design. All character and level design were inspired by Hollow Knight, mechanics and gameplay was taken and interpreted from Cuphead.
+---
 
-Concept
-Player must defeat single boss in the small arena, using level environment and combination of attacks, to achieve this goal, player must learn enemies’ patter of attacks, and know how to counter specific moves. Every boss has several stages, which provides with unique move sets ant attacks. Player must learn every vulnerable spots, and how to get to them without being crushed by the enemies.
+# Concept
 
-Genre
-2D platformer, shooter, run and gun.
+The player must defeat a single boss in a small arena by leveraging the level's environment and combining various attack strategies. Success requires learning the boss's attack patterns and identifying counters for specific moves. Each boss features multiple stages with unique attack sets and moves, requiring players to adapt their strategies to exploit vulnerabilities while avoiding devastating attacks.
 
-Gameplay mechanics
-1.	Player movement
-2.	Combat system
-3.	Enemy’s AI
-4.	Skills
-5.	Level up system
-6.	Environment integration (jump pad, rocks, ice)
-7.	Buffs
-8.	Debuff
-9.	Status change system
-10.	Different projectiles
-11.	Staged boss
-12.	Level stage change
-13.	Level stage difficult
+---
 
-Core gameplay
-Player must evade all of the boss attacks, and delay damage by combining attack sets and environment specifics.
+# Genre
 
-Level design
-Every boss has unique level, filled with different obstacles, and interactions. However, every level has:
-•	Platforms;
-•	Obstacles;
-•	Consumable items;
-•	Interactive obstacles.
+**2D Platformer**, **Shooter**, **Run and Gun**
 
-Game modes
-Boss fight, Boss rush.
+---
 
-Setting and themes
-•	Gloomy Tones: Dark colors predominate, creating an atmosphere of oppression and hopelessness;
-•	Gothic Elements: The architecture and design of locations are inspired by Gothic cathedrals and castles;
-•	Ruins and ruins: Many locations represent the ruins;
-•	Lighting effects: The use of light and shadow creates contrast and emphasizes the gloomy atmosphere.
-Setting:
-•	Underworld: The player explores vast underground caverns, tunnels and cities;
-•	Infected Earth: The world is plagued by an ancient disease that turns creatures into monsters;
+# Gameplay Mechanics
+
+1. **Player Movement**
+2. **Combat System**
+3. **Enemy AI**
+4. **Skills**
+5. **Level-Up System**
+6. **Environment Integration** (e.g., jump pads, rocks, ice)
+7. **Buffs**
+8. **Debuffs**
+9. **Status Change System**
+10. **Variety of Projectiles**
+11. **Staged Boss Encounters**
+12. **Dynamic Level Stage Changes**
+13. **Level Difficulty Scaling**
+
+---
+
+# Core Gameplay
+
+Players must evade all boss attacks and deliver damage through a combination of well-timed strikes and strategic use of the environment. Victory depends on mastering attack combinations and environmental mechanics.
+
+---
+
+# Level Design
+
+Each boss resides in a unique level filled with obstacles and interactive elements. Common level features include:
+
+- **Platforms**
+- **Obstacles**
+- **Consumable Items**
+- **Interactive Obstacles**
+
+---
+
+# Game Modes
+
+- **Boss Fight**: Individual boss encounters.
+- **Boss Rush**: A sequence of consecutive boss battles.
+
+---
+
+# Setting and Themes
+
+### Themes:
+- **Gloomy Tones**: Dark and oppressive color palettes dominate the game.
+- **Gothic Elements**: Architecture and designs draw inspiration from Gothic cathedrals and castles.
+- **Ruins**: Many locations depict decayed and crumbled structures.
+- **Lighting Effects**: Dramatic use of light and shadow enhances the atmosphere.
+
+### Setting:
+- **Underworld**: Players explore vast underground caverns, tunnels, and cities.
+- **Infected Earth**: The world is plagued by an ancient disease that turns creatures into monstrous forms.
+
+--- 
