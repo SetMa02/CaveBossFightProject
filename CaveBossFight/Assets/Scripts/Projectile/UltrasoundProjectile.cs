@@ -24,7 +24,7 @@ public class UltrasoundProjectile : MonoBehaviour
 			this._direction = Vector2.left;
 		}
 
-		Vector3 spawnOffset = new Vector3(this._direction.x * 0.5f, 0.5f, 0f);
+		Vector3 spawnOffset = new Vector3(this._direction.x * 1.5f, 0.5f, 0f);
 		this.transform.position = this._playerTransform.position + spawnOffset;
 
 		float angle = Mathf.Atan2(this._direction.y, this._direction.x) * Mathf.Rad2Deg;
@@ -37,6 +37,16 @@ public class UltrasoundProjectile : MonoBehaviour
 		this._lifeTimer -= Time.deltaTime;
 		if (this._lifeTimer <= 0f)
 		{
+			ProjectilePool.Instance.ReturnProjectile(this.gameObject);
+		}
+	}
+
+	void OnTriggerEnter2D(Collider2D other)
+	{
+		HealthManager health = other.GetComponent<HealthManager>();
+		if (health != null)
+		{
+			health.TakeDamage(15f);
 			ProjectilePool.Instance.ReturnProjectile(this.gameObject);
 		}
 	}
