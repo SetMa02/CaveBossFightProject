@@ -7,6 +7,7 @@ using UnityEngine;
 [RequireComponent(typeof(GolemObjectPool))]
 public class GolemAttacks : MonoBehaviour
 {
+    [SerializeField] private Transform _throwPoint;
     private GolemObjectPool _pool;
     private void Start()
     {
@@ -15,6 +16,6 @@ public class GolemAttacks : MonoBehaviour
 
     public void RockThrow()
     {
-        
+        _pool.GetFromPool(_throwPoint.position);
     }
 }
