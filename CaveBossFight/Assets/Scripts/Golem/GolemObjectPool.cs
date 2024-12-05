@@ -8,7 +8,7 @@ public class GolemObjectPool : MonoBehaviour
 {
     [SerializeField] private int _poolSize = 50;
     [SerializeField] private Transform _poolStorge;
-    private GolemProjectile _projectile;
+    [SerializeField]private GolemProjectile _projectile;
     private List<GolemProjectile> _pool;
     
 

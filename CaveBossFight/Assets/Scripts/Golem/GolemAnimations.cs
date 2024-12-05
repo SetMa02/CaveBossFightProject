@@ -41,8 +41,7 @@ public class GolemAnimations : MonoBehaviour
 
     private void UpdateMeshCollider()
     {
-        _collider.sharedMesh = null; 
-        _collider.sharedMesh = _filter.mesh; 
+   
     }
 
     private bool IsAnimationFinished(string animationName)

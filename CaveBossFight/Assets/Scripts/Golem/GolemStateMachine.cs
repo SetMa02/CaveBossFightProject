@@ -11,14 +11,17 @@ public class GolemStateMachine : MonoBehaviour
     private GolemAttacks _attacks;
     private GolemMovement _movement;
     private GolemAnimations _animations;
-    private List<GolemAnimations> _attackSiquences;
+    private int _attackCount;
 
     private void Start()
     {
         _attacks = GetComponent<GolemAttacks>();
         _movement  = GetComponent<GolemMovement>();
         _animations = GetComponent<GolemAnimations>();
-        _attackSiquences = new List<GolemAnimations>();
     }
-    
+
+    private void Update()
+    {
+        
+    }
 }
