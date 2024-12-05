@@ -12,6 +12,10 @@ public class PlayerController : MonoBehaviour
 	private bool _isHeavyAttacking = false;
 	private bool _isJumping = false;
 
+	// Настройте эти параметры по желанию
+	public float _attackRange = 1f;
+	public LayerMask _bossLayer;
+
 	void Awake()
 	{
 		this._movement = this.GetComponent<PlayerMovement>();
@@ -71,7 +75,12 @@ public class PlayerController : MonoBehaviour
 	{
 		this._isAttacking = true;
 		this._animationController.Attack();
+
 		yield return new WaitForSeconds(this.GetAnimationLength("Attack"));
+
+		// После завершения анимации атаки проверяем попадание по боссу
+		PerformMeleeAttack();
+
 		this._isAttacking = false;
 	}
 
@@ -111,5 +120,19 @@ public class PlayerController : MonoBehaviour
 	public void OnHeavyAttackComplete()
 	{
 		this._isHeavyAttacking = false;
+	}
+
+	private void PerformMeleeAttack()
+	{
+		Vector3 attackPosition = this.transform.position + new Vector3(this.transform.localScale.x * 0.5f, 0f, 0f);
+		Collider2D hit = Physics2D.OverlapCircle(attackPosition, this._attackRange, this._bossLayer);
+		if (hit != null)
+		{
+			HealthManager health = hit.GetComponent<HealthManager>();
+			if (health != null)
+			{
+				health.TakeDamage(10f); // Ближняя атака наносит 10 урона
+			}
+		}
 	}
 }

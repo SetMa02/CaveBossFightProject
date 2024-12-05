@@ -5,45 +5,40 @@ using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.UI;
 
-using UnityEngine;
-using UnityEngine.Serialization;
-using UnityEngine.UI;
-
 public class HealthManager : MonoBehaviour
 {
-    public float _maxHp = 100f;
-    public float _hp; 
+	public float _maxHp = 100f;
+	public float _hp;
 
-    [Header("UI")]
-    public Slider _healthBar;
+	[Header("UI")]
+	public Slider _healthBar;
 
-    void Start()
-    {
-        _hp = _maxHp;
-        
-        _healthBar.maxValue = _maxHp;
-        _healthBar.value = _hp;
-    }
+	void Start()
+	{
+		_hp = _maxHp;
 
-    public void TakeDamage(float damage)
-    {
-        _hp -= damage;
-        _hp = Mathf.Clamp(_hp, 0, _maxHp);
-        
-        UpdateHealthUI();
-    }
+		_healthBar.maxValue = _maxHp;
+		_healthBar.value = _hp;
+	}
 
-    public void Heal(float healAmount)
-    {
-        _hp += healAmount;
-        _hp = Mathf.Clamp(_hp, 0, _maxHp);
-        
-        UpdateHealthUI();
-    }
+	public void TakeDamage(float damage)
+	{
+		_hp -= damage;
+		_hp = Mathf.Clamp(_hp, 0, _maxHp);
 
-    private void UpdateHealthUI()
-    {
-        _healthBar.value = _hp;
-    }
+		UpdateHealthUI();
+	}
+
+	public void Heal(float healAmount)
+	{
+		_hp += healAmount;
+		_hp = Mathf.Clamp(_hp, 0, _maxHp);
+
+		UpdateHealthUI();
+	}
+
+	private void UpdateHealthUI()
+	{
+		_healthBar.value = _hp;
+	}
 }
-
