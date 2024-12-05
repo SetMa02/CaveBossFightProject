@@ -8,20 +8,38 @@ public class GolemProjectile : MonoBehaviour
     [SerializeField]private float _acceleration = 2f;
     [SerializeField]private float _maxSpeed = 10f;
     [SerializeField]private float _homingDuration = 2f;
+    [SerializeField]private float _lifeTime = 5f;
     
     private Transform _target;           
     private float _currentSpeed = 0f;   
     private Vector3 _direction;        
     private bool _isHoming = true;     
+    private Transform _parentTransform;
+    private List<GolemProjectile> _parentList;
 
     void Start()
     {
        SetUpTarget();
     }
 
-    void Update()
+    void FixedUpdate()
     {
-       ProjectileFlight();
+        _lifeTime -= Time.deltaTime;
+        
+        if (_lifeTime <= 0)
+        {
+            ReturnToParent();
+        }
+        else
+        {
+            ProjectileFlight();
+        }
+    }
+
+    public void SetParentTransform(Transform parent, List<GolemProjectile> parentList)
+    {
+        _parentTransform = parent;
+        _parentList = parentList;
     }
 
     private void SetUpTarget()
@@ -55,6 +73,13 @@ public class GolemProjectile : MonoBehaviour
         {
             transform.rotation = Quaternion.LookRotation(Vector3.forward, _direction);
         }
+    }
+
+    private void ReturnToParent()
+    {
+        transform.SetParent(_parentTransform);
+        transform.gameObject.SetActive(false);
+        _parentList.Add(this);
     }
 
     private void DisableHoming()

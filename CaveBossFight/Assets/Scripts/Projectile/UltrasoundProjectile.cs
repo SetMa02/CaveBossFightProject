@@ -43,7 +43,7 @@ public class UltrasoundProjectile : MonoBehaviour
 
 	void OnTriggerEnter2D(Collider2D other)
 	{
-		HealthManager health = other.GetComponent<HealthManager>();
+		Golem health = other.GetComponent<Golem>();
 		if (health != null)
 		{
 			health.TakeDamage(15f);

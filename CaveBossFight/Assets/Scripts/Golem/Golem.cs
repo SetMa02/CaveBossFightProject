@@ -5,7 +5,7 @@ using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class HealthManager : MonoBehaviour
+public class Golem : MonoBehaviour
 {
 	public float _maxHp = 100f;
 	public float _hp;

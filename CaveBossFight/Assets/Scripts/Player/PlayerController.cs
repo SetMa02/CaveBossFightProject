@@ -128,7 +128,7 @@ public class PlayerController : MonoBehaviour
 		Collider2D hit = Physics2D.OverlapCircle(attackPosition, this._attackRange, this._bossLayer);
 		if (hit != null)
 		{
-			HealthManager health = hit.GetComponent<HealthManager>();
+			Golem health = hit.GetComponent<Golem>();
 			if (health != null)
 			{
 				health.TakeDamage(10f); // Ближняя атака наносит 10 урона

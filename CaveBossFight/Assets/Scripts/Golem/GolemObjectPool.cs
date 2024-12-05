@@ -3,27 +3,23 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-[RequireComponent(typeof(GolemProjectile))]
 public class GolemObjectPool : MonoBehaviour
 {
     [SerializeField] private int _poolSize = 50;
     [SerializeField] private Transform _poolStorge;
-    [SerializeField]private GolemProjectile _projectile;
+    [SerializeField] private GolemProjectile _projectile;
     private List<GolemProjectile> _pool;
     
-
     private void Start()
     {
-        _projectile = GetComponent<GolemProjectile>();
         PoolInit();
     }
-
     
-    //Доработать
     public void GetFromPool(Vector3 position)
     {
         var projectile = _pool[0];
         _pool.RemoveAt(0);
+        projectile.SetParentTransform(_poolStorge.transform, _pool);
         projectile.transform.position = position;
         _projectile.gameObject.SetActive(true);
     }
@@ -38,4 +34,5 @@ public class GolemObjectPool : MonoBehaviour
             _projectile.gameObject.SetActive(false);
         }   
     }
+    
 }

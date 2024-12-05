@@ -18,10 +18,14 @@ public class GolemStateMachine : MonoBehaviour
         _attacks = GetComponent<GolemAttacks>();
         _movement  = GetComponent<GolemMovement>();
         _animations = GetComponent<GolemAnimations>();
+        _attackCount = 5;
     }
 
     private void Update()
     {
-        
+        if (_attackCount>0)
+        {
+            _animations.PlayThrowAttackAnimation();
+        }
     }
 }
