@@ -56,5 +56,9 @@
         "temp/": true,
         "Temp/": true
     },
-    "dotnet.defaultSolution": "CaveBossFight.sln"
+	"dotnet.defaultSolution": "CaveBossFight.sln",
+	"cSpell.words": [
+		"Behaviour",
+		"Rigidbody"
+	]
 }
