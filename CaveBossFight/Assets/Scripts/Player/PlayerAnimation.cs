@@ -3,8 +3,8 @@ using UnityEngine;
 [RequireComponent(typeof(Animator))]
 public class PlayerAnimation : MonoBehaviour
 {
-	private Animator animator;
-	private bool facingRight = true;
+	private Animator _animator;
+	private bool _facingRight = true;
 
 	private const string IsWalkingParam = "isWalking";
 	private const string IsJumpingParam = "isJumping";
@@ -13,47 +13,51 @@ public class PlayerAnimation : MonoBehaviour
 
 	void Awake()
 	{
-		animator = GetComponent<Animator>();
+		this._animator = this.GetComponent<Animator>();
 	}
 
 	public void SetMovement(Vector2 direction)
 	{
 		bool isMoving = direction.magnitude > 0;
-		animator.SetBool(IsWalkingParam, isMoving);
+		this._animator.SetBool(IsWalkingParam, isMoving);
 		if (isMoving)
 		{
-			if (direction.x > 0 && !facingRight)
-				Flip();
-			else if (direction.x < 0 && facingRight)
-				Flip();
+			if (direction.x > 0 && !this._facingRight)
+			{
+				this.Flip();
+			}
+			else if (direction.x < 0 && this._facingRight)
+			{
+				this.Flip();
+			}
 		}
 	}
 
 	public void Attack()
 	{
-		animator.SetTrigger(AttackTrigger);
+		this._animator.SetTrigger(AttackTrigger);
 	}
 
 	public void HeavyAttack()
 	{
-		animator.SetTrigger(HeavyAttackTrigger);
+		this._animator.SetTrigger(HeavyAttackTrigger);
 	}
 
 	public void Idle()
 	{
-		animator.SetBool(IsWalkingParam, false);
+		this._animator.SetBool(IsWalkingParam, false);
 	}
 
 	public void Jump(bool isJumping)
 	{
-		animator.SetBool(IsJumpingParam, isJumping);
+		this._animator.SetBool(IsJumpingParam, isJumping);
 	}
 
 	private void Flip()
 	{
-		facingRight = !facingRight;
-		Vector3 scale = transform.localScale;
-		scale.x = Mathf.Abs(scale.x) * (facingRight ? 1 : -1);
-		transform.localScale = scale;
+		this._facingRight = !this._facingRight;
+		Vector3 scale = this.transform.localScale;
+		scale.x = Mathf.Abs(scale.x) * (this._facingRight ? 1 : -1);
+		this.transform.localScale = scale;
 	}
 }

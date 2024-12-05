@@ -7,47 +7,47 @@ public class PlayerMovement : MonoBehaviour
 	public float jumpForce = 5f;
 	public LayerMask groundLayer;
 
-	private Rigidbody2D rb;
-	private BoxCollider2D boxCollider;
-	private Vector2 movement;
-	private bool isGrounded;
+	private Rigidbody2D _rb;
+	private BoxCollider2D _boxCollider;
+	private Vector2 _movement;
+	private bool _isGrounded;
 
 	void Awake()
 	{
-		rb = GetComponent<Rigidbody2D>();
-		boxCollider = GetComponent<BoxCollider2D>();
+		this._rb = this.GetComponent<Rigidbody2D>();
+		this._boxCollider = this.GetComponent<BoxCollider2D>();
 	}
 
 	void Update()
 	{
-		isGrounded = boxCollider.IsTouchingLayers(groundLayer);
+		this._isGrounded = this._boxCollider.IsTouchingLayers(this.groundLayer);
 	}
 
 	public void Move(Vector2 direction)
 	{
-		movement = direction * moveSpeed;
+		this._movement = direction * this.moveSpeed;
 	}
 
 	public void Jump()
 	{
-		if (isGrounded)
+		if (this._isGrounded)
 		{
-			rb.velocity = new Vector2(rb.velocity.x, jumpForce);
+			this._rb.velocity = new Vector2(this._rb.velocity.x, this.jumpForce);
 		}
 	}
 
 	void FixedUpdate()
 	{
-		rb.velocity = new Vector2(movement.x, rb.velocity.y);
+		this._rb.velocity = new Vector2(this._movement.x, this._rb.velocity.y);
 	}
 
 	public bool IsMoving()
 	{
-		return movement.x != 0;
+		return this._movement.x != 0;
 	}
 
 	public bool IsGrounded()
 	{
-		return isGrounded;
+		return this._isGrounded;
 	}
 }

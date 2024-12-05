@@ -20,7 +20,7 @@ public class InputHandler : MonoBehaviour
 
 	public bool IsAnyAttackPressed()
 	{
-		return IsAttackPressed() || IsHeavyAttackPressed();
+		return this.IsAttackPressed() || this.IsHeavyAttackPressed();
 	}
 
 	public bool IsJumpPressed()
