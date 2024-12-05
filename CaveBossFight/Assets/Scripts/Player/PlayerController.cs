@@ -4,101 +4,112 @@ using System.Collections;
 [RequireComponent(typeof(PlayerMovement), typeof(PlayerAnimation), typeof(InputHandler))]
 public class PlayerController : MonoBehaviour
 {
-	private PlayerMovement movement;
-	private PlayerAnimation animationController;
-	private InputHandler inputHandler;
+	private PlayerMovement _movement;
+	private PlayerAnimation _animationController;
+	private InputHandler _inputHandler;
 
-	private bool isAttacking = false;
-	private bool isHeavyAttacking = false;
-	private bool isJumping = false;
+	private bool _isAttacking = false;
+	private bool _isHeavyAttacking = false;
+	private bool _isJumping = false;
 
 	void Awake()
 	{
-		movement = GetComponent<PlayerMovement>();
-		animationController = GetComponent<PlayerAnimation>();
-		inputHandler = GetComponent<InputHandler>();
+		this._movement = this.GetComponent<PlayerMovement>();
+		this._animationController = this.GetComponent<PlayerAnimation>();
+		this._inputHandler = this.GetComponent<InputHandler>();
 	}
 
 	void Update()
 	{
-		HandleMovement();
-		HandleActions();
+		this.HandleMovement();
+		this.HandleActions();
 	}
 
 	private void HandleMovement()
 	{
-		Vector2 direction = inputHandler.GetMovementInput();
-		movement.Move(direction);
-		animationController.SetMovement(direction);
+		Vector2 direction = this._inputHandler.GetMovementInput();
+		this._movement.Move(direction);
+		this._animationController.SetMovement(direction);
 
-		if (inputHandler.IsJumpPressed())
+		if (this._inputHandler.IsJumpPressed())
 		{
-			movement.Jump();
-			animationController.Jump(true);
-			isJumping = true;
+			this._movement.Jump();
+			this._animationController.Jump(true);
+			this._isJumping = true;
 		}
 
-		if (isJumping && movement.IsGrounded())
+		if (this._isJumping && this._movement.IsGrounded())
 		{
-			animationController.Jump(false);
-			isJumping = false;
+			this._animationController.Jump(false);
+			this._isJumping = false;
 		}
 	}
 
 	private void HandleActions()
 	{
-		if (isAttacking || isHeavyAttacking)
+		if (this._isAttacking || this._isHeavyAttacking)
+		{
 			return;
-
-		if (inputHandler.IsAttackPressed())
-		{
-			StartCoroutine(HandleAttack());
-		}
-		if (inputHandler.IsHeavyAttackPressed())
-		{
-			StartCoroutine(HandleHeavyAttack());
 		}
 
-		if (!inputHandler.IsAnyAttackPressed() && !movement.IsMoving() && !isAttacking && !isHeavyAttacking && !isJumping)
+		if (this._inputHandler.IsAttackPressed())
 		{
-			animationController.Idle();
+			StartCoroutine(this.HandleAttack());
+		}
+		if (this._inputHandler.IsHeavyAttackPressed())
+		{
+			StartCoroutine(this.HandleHeavyAttack());
+		}
+
+		if (!this._inputHandler.IsAnyAttackPressed() && !this._movement.IsMoving() && !this._isAttacking && !this._isHeavyAttacking && !this._isJumping)
+		{
+			this._animationController.Idle();
 		}
 	}
 
 	private IEnumerator HandleAttack()
 	{
-		isAttacking = true;
-		animationController.Attack();
-		yield return new WaitForSeconds(GetAnimationLength("Attack"));
-		isAttacking = false;
+		this._isAttacking = true;
+		this._animationController.Attack();
+		yield return new WaitForSeconds(this.GetAnimationLength("Attack"));
+		this._isAttacking = false;
 	}
 
 	private IEnumerator HandleHeavyAttack()
 	{
-		isHeavyAttacking = true;
-		animationController.HeavyAttack();
-		yield return new WaitForSeconds(GetAnimationLength("HeavyAttack"));
-		isHeavyAttacking = false;
+		this._isHeavyAttacking = true;
+		this._animationController.HeavyAttack();
+		this.SpawnUltrasoundProjectile();
+		yield return new WaitForSeconds(this.GetAnimationLength("HeavyAttack"));
+		this._isHeavyAttacking = false;
+	}
+
+	private void SpawnUltrasoundProjectile()
+	{
+		GameObject projectile = ProjectilePool.Instance.GetProjectile();
+		projectile.GetComponent<UltrasoundProjectile>().Initialize(this.transform);
 	}
 
 	private float GetAnimationLength(string animationName)
 	{
-		RuntimeAnimatorController ac = animationController.GetComponent<Animator>().runtimeAnimatorController;
-		foreach (var clip in ac.animationClips)
+		RuntimeAnimatorController ac = this._animationController.GetComponent<Animator>().runtimeAnimatorController;
+		foreach (AnimationClip clip in ac.animationClips)
 		{
 			if (clip.name == animationName)
+			{
 				return clip.length;
+			}
 		}
 		return 0.5f;
 	}
 
 	public void OnAttackComplete()
 	{
-		isAttacking = false;
+		this._isAttacking = false;
 	}
 
 	public void OnHeavyAttackComplete()
 	{
-		isHeavyAttacking = false;
+		this._isHeavyAttacking = false;
 	}
 }

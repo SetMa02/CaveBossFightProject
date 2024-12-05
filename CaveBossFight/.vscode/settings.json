@@ -59,6 +59,7 @@
 	"dotnet.defaultSolution": "CaveBossFight.sln",
 	"cSpell.words": [
 		"Behaviour",
+		"Mathf",
 		"Rigidbody"
 	]
 }
