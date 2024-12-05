@@ -144,7 +144,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 7853e37f141fe92408e9082849a58b61, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 0.93
+      value: 0.34
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 7853e37f141fe92408e9082849a58b61, type: 3}
       propertyPath: m_LocalPosition.y
@@ -152,7 +152,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 7853e37f141fe92408e9082849a58b61, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 1.96
+      value: 2.21
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 7853e37f141fe92408e9082849a58b61, type: 3}
       propertyPath: m_LocalRotation.w
@@ -1582,7 +1582,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cb32f75592345a543859e6d5b0de4893, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  attackSpawnPoint: {fileID: 843421395}
 --- !u!114 &843421401
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2452,3 +2451,9 @@ SceneRoots:
   - {fileID: 752934222}
   - {fileID: 843421395}
   - {fileID: 1327907352}
+  - {fileID: 7054053131319769670}
+  - {fileID: 2725897}
+  - {fileID: 117896540}
+  - {fileID: 1015513712}
+  - {fileID: 1273504691}
+  - {fileID: 1973257973}
