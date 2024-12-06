@@ -9,6 +9,9 @@ public class UltrasoundProjectile : MonoBehaviour
 	private Vector2 _direction;
 	private Transform _playerTransform;
 
+	[SerializeField] private int _heavyAttackDamage = 15;
+	[SerializeField] private LayerMask _damageableLayer;
+
 	public void Initialize(Transform player)
 	{
 		this._playerTransform = player;
@@ -41,13 +44,16 @@ public class UltrasoundProjectile : MonoBehaviour
 		}
 	}
 
-	void OnTriggerEnter2D(Collider2D other)
+	void OnTriggerEnter(Collider other)
 	{
-		Golem health = other.GetComponent<Golem>();
-		if (health != null)
+		Debug.Log("Projectile hit: " + other.name);
+
+		IDamageable damageable = other.GetComponent<IDamageable>();
+		if (damageable != null)
 		{
-			health.TakeDamage(15f);
-			ProjectilePool.Instance.ReturnProjectile(this.gameObject);
+			damageable.TakeDamage(this._heavyAttackDamage);
 		}
+
+		//ProjectilePool.Instance.ReturnProjectile(this.gameObject);
 	}
 }

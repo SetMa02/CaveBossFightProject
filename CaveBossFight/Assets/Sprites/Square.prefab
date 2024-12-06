@@ -100,3 +100,4 @@ MonoBehaviour:
   _acceleration: 2
   _maxSpeed: 10
   _homingDuration: 2
+  _lifeTime: 5

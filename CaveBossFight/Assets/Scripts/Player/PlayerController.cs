@@ -2,25 +2,27 @@ using UnityEngine;
 using System.Collections;
 
 [RequireComponent(typeof(PlayerMovement), typeof(PlayerAnimation), typeof(InputHandler))]
+[RequireComponent(typeof(AttackController))]
 public class PlayerController : MonoBehaviour
 {
 	private PlayerMovement _movement;
 	private PlayerAnimation _animationController;
 	private InputHandler _inputHandler;
+	private AttackController _attackController;
 
 	private bool _isAttacking = false;
 	private bool _isHeavyAttacking = false;
 	private bool _isJumping = false;
 
-	// Настройте эти параметры по желанию
-	public float _attackRange = 1f;
-	public LayerMask _bossLayer;
+	[SerializeField] private float _closeAttackRadius = 1f;
+	[SerializeField] private int _closeAttackDamage = 10;
 
 	void Awake()
 	{
 		this._movement = this.GetComponent<PlayerMovement>();
 		this._animationController = this.GetComponent<PlayerAnimation>();
 		this._inputHandler = this.GetComponent<InputHandler>();
+		this._attackController = this.GetComponent<AttackController>();
 	}
 
 	void Update()
@@ -75,11 +77,12 @@ public class PlayerController : MonoBehaviour
 	{
 		this._isAttacking = true;
 		this._animationController.Attack();
-
 		yield return new WaitForSeconds(this.GetAnimationLength("Attack"));
 
-		// После завершения анимации атаки проверяем попадание по боссу
-		PerformMeleeAttack();
+		if (this._attackController != null)
+		{
+			this._attackController.PerformCloseAttack(this.transform.position);
+		}
 
 		this._isAttacking = false;
 	}
@@ -120,19 +123,5 @@ public class PlayerController : MonoBehaviour
 	public void OnHeavyAttackComplete()
 	{
 		this._isHeavyAttacking = false;
-	}
-
-	private void PerformMeleeAttack()
-	{
-		Vector3 attackPosition = this.transform.position + new Vector3(this.transform.localScale.x * 0.5f, 0f, 0f);
-		Collider2D hit = Physics2D.OverlapCircle(attackPosition, this._attackRange, this._bossLayer);
-		if (hit != null)
-		{
-			Golem health = hit.GetComponent<Golem>();
-			if (health != null)
-			{
-				health.TakeDamage(10f); // Ближняя атака наносит 10 урона
-			}
-		}
 	}
 }
